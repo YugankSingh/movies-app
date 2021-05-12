@@ -1,3 +1,5 @@
+import {combineReducers} from 'redux'
+
 import { ADD_MOVIES } from '../actions'
 import { ADD_TO_FAVOURITES, REMOVE_FROM_FAVOURITES } from '../actions'
 import { SET_IS_ON_FAVOURITES } from '../actions'
@@ -8,7 +10,7 @@ const initialMoviesState = {
 	favourites: [],
 	isOnFavourites: false,
 }
-export default function movies ( prevState = initialMoviesState, action ) {
+export function movies ( prevState = initialMoviesState, action ) {
 	switch (action.type){
 		case ADD_MOVIES:
 			return {
@@ -40,3 +42,21 @@ export default function movies ( prevState = initialMoviesState, action ) {
 	
 	return prevState
 }
+
+const initialSearchState = {
+	result: {}
+}
+export function search ( state = initialSearchState, action ){
+	return state
+}
+
+const initialRootState = {
+	movies: initialMoviesState,
+	search: initialSearchState
+}
+
+
+export default combineReducers({
+	movies,
+	search,
+})

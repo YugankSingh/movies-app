@@ -5,12 +5,6 @@ import React from 'react'
 import { addMovies, setIsOnFavourites } from '../actions'
 
 class App extends React.Component {
-	constructor (props) {
-		super(props)
-		this.state = {
-			isOnFavourites: false
-		}
-	}
 	componentDidMount(){
 		const {store} = this.props
 
@@ -24,8 +18,8 @@ class App extends React.Component {
 	}
 
 	isMovieFavourite = (movie) => {
-		let {store} = this.props
-		const {favourites} = store.getState()
+		const { movies } = this.props.store.getState()
+		const {favourites} = movies
 
 		const index = favourites.indexOf(movie)
 
@@ -46,8 +40,8 @@ class App extends React.Component {
 	render = () => {
 		let {store} = this.props
 
-		// the list according the tab either Favourites
-		const { favourites, list, isOnFavourites } = store.getState()
+		const { movies } = store.getState()
+		const { favourites, list, isOnFavourites } = movies
 		const movieList = isOnFavourites ? favourites : list
 		console.log('RENDER')
 		console.log('STATE', store.getState())

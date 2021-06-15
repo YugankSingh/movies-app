@@ -27,7 +27,7 @@ const middleware =
 		? developmentMiddlweware
 		: productionMiddleware
 
-const store = createStore(rootReducer, applyMiddleware(logger, thunk))
+const store = createStore(rootReducer, applyMiddleware(middleware))
 
 // export const StoreContext = createContext()
 

@@ -12,4 +12,4 @@ Fetch any other movie from open movies data base using search box
 
 - Using Redux as a data store
 - Using actions and reducers in redux to update data
-- Using thunk-actions to call API via redux` 
+- Using thunk-actions to call API via redux 

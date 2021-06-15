@@ -47,7 +47,7 @@ export function setIsOnFavourites  ( value ) {
 export function handleMovieSearch(movieName) {
 	return function(dispatch){
 		
-		const url = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&t=${encodeURI(movieName)}`
+		const url = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&t=${encodeURI(movieName)}`
 		fetch(url)
 		.then(res => res.json() )
 		.then(movie => {

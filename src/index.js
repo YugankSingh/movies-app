@@ -1,22 +1,33 @@
-import React from 'react'
-import {Provider} from 'react-redux'
-import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+import React from "react"
+import { Provider } from "react-redux"
+import ReactDOM from "react-dom"
+import { createStore, applyMiddleware } from "redux"
+import thunk from "redux-thunk"
 
-import './index.css'
-import App from './components/App'
-import rootReducer from './reducers'
+import "./index.css"
+import App from "./components/App"
+import rootReducer from "./reducers"
 
-const logger = ({dispatch, getState}) => (next) => (action) => {
-	if( typeof action !== 'function' ){
-		console.log('Type is', action.type )
-		return next(action)
+const logger =
+	({ dispatch, getState }) =>
+	next =>
+	action => {
+		if (typeof action !== "function") {
+			console.log("Type is", action.type)
+			return next(action)
+		}
+		next(action)
 	}
-	next(action)
-}
 
-const store = createStore(rootReducer, applyMiddleware(logger, thunk)) 
+const productionMiddleware = [thunk]
+const developmentMiddlweware = [...productionMiddleware, logger]
+
+const middleware =
+	!process.env.NODE_ENV || process.env.NODE_ENV === "development"
+		? developmentMiddlweware
+		: productionMiddleware
+
+const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 
 // export const StoreContext = createContext()
 
@@ -31,7 +42,7 @@ const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 // }
 
 // export function connect(callback){
-	
+
 // 	return function (Component) {
 // 		class ConnectedComponent extends React.Component {
 // 			constructor (props) {
@@ -46,8 +57,8 @@ const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 // 				const {store} = this.props
 // 				const dataToBePassedAsProps = callback(store.getState())
 // 				return (
-// 					<Component 
-// 						{...dataToBePassedAsProps} 
+// 					<Component
+// 						{...dataToBePassedAsProps}
 // 						dispatch={store.dispatch}
 // 					/>
 // 				)
@@ -67,12 +78,11 @@ const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 // 	}
 // }
 
-
 ReactDOM.render(
 	<Provider store={store}>
 		<React.StrictMode>
-			<App/>
+			<App />
 		</React.StrictMode>
 	</Provider>,
-	document.getElementById('root')
-);
+	document.getElementById("root")
+)

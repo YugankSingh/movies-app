@@ -17,14 +17,14 @@ class MovieCard extends React.Component {
 		return (
 			<div className="movie-card">
 				<div className="left">
-					<img src={movie.Poster} alt="movie-poster" />
+					<img src={movie.Poster || 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Comic_image_missing.svg/1264px-Comic_image_missing.svg.png'} alt="movie-poster" />
 				</div>
 
 				<div className="right">
-					<div className="title">{ movie.title }</div>
-					<div className="plot">{ movie.Plot }</div>
+					<div className="title">{ movie.title || movie.Title || 'Seems Like This Movie Have No Name' }</div>
+					<div className="plot">{ movie.Plot || 'No Plot Available' }</div>
 					<div className="footer">
-						<div className="rating">{ movie.imdbRating }</div>{
+						<div className="rating">{ movie.imdbRating || 'Rating Seems to Be missing' }</div>{
 							isFavourite
 							? <button 
 									className="unfavourite-btn"

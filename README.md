@@ -1,8 +1,10 @@
 # Movies App
 
 Movies app made using React-Redux-❤️
-In it you can add movies favourites and remove from favourite
-Fetch any other movie from open movies data base using search box
+In it you can
+-Add and remove movies from movies list,
+-See all your favourite movies at one place,
+-Fetch any other movie from open movies data base using search box.
 
 [See Live Version](https://yuganksingh.github.io/movies-app/)
 
